@@ -17,10 +17,13 @@ export const ERROR_CODES = {
 }
 
 export const SOCKET_EVENTS = keymirror({
+    CLOSING: null
 });
 
 export const SOCKET_REQUESTS = keymirror({
 });
+
+export const SOCKET_PORT = 3001;
 
 /**
  * Dispatch: Server Only - An event was dispatched
