@@ -74,6 +74,7 @@ export class WebsocketConnection extends EventEmitter implements FunctionalSocke
      */
     public requests: Map<string, (response: PacketData | undefined) => any> = new Map();
     public authenticated: boolean = false;
+    public lastHeartbeat: number;
 
     public constructor(public socket: WebSocket) {
         super();
@@ -148,6 +149,7 @@ export class WebsocketConnection extends EventEmitter implements FunctionalSocke
             o: 1,
             d: heartbeatInterval
         });
+        this.lastHeartbeat = Date.now();
     }
 
     /**
@@ -166,6 +168,7 @@ export class WebsocketConnection extends EventEmitter implements FunctionalSocke
      */
     public async heartbeat(): Promise<void> {
         await this.send({o: 5});
+        this.lastHeartbeat = Date.now();
     }
 
     /**
@@ -173,6 +176,7 @@ export class WebsocketConnection extends EventEmitter implements FunctionalSocke
      */
     public async heartbeatAck(): Promise<void> {
         await this.send({o: 6});
+        this.lastHeartbeat = Date.now();
     }
 
     /**
