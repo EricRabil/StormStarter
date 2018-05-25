@@ -32,6 +32,14 @@ export class SocketCluster implements FunctionalSocket {
     }
 
     /**
+     * Returns whether this cluster has a socket
+     * @param socket the socket to search for
+     */
+    public has(socket: FunctionalSocket): boolean {
+        return this.sockets.includes(socket);
+    }
+
+    /**
      * Close all sockets in the cluster
      * @param code optional close code
      * @param reason optional close reason
