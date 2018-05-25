@@ -22,6 +22,7 @@ class AuthenticatorClass {
             }
         });
         this.token = res.body.token;
+        localStorage.setItem("token", this.token!);
         return this.token as string;
     }
     
